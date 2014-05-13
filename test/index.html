@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pass-Meter Tests</title>
+  </head>
+  <body>
+
+    <input type="password" name="test-password">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../src/pass-meter.js"></script>
+
+    <script>
+
+      $(document).ready(function () {
+        $('input[type="password"]').passMeter().on('pass-change', function (e, complexity) {
+          console.log(complexity)
+        })
+      })
+
+    </script>
+
+  </body>
+</html>

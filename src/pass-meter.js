@@ -14,7 +14,7 @@
 
   // Node. Does not work with strict CommonJS, but only CommonJS-like
   // environments that supports module.exports like Node.
-  } else if (typeof exports === 'object') {
+  } else if (typeof module === 'object' && module.exports) {
     module.exports = factory(require('jquery'))
 
   // Browser globals (root is window)
@@ -24,7 +24,12 @@
 
 }(this, function ($) {
 
+  'use strict'
+
   var defaultOptions = {
+    events: {
+      'keyup': 'checkStrength'
+    }
   }
 
   function PassMeter (element, options) {
@@ -35,11 +40,49 @@
     this.initialize()
   }
 
+  // Cached regex to split keys for `delegate`.
+  var delegateEventSplitter = /^(\S+)\s*(.*)$/;
+
   PassMeter.prototype = {
 
     constructor: PassMeter,
 
     initialize: function () {
+      this.delegateEvents()
+    },
+
+    delegateEvents: function (events) {
+      if (!events) {
+        events = this.options.events
+      }
+
+      for (var key in events) {
+        var method = events[key]
+
+        if (!$.isFunction(method)) method = this[events[key]]
+        if (!method) continue
+
+        var match     = key.match(delegateEventSplitter),
+            eventName = match[1],
+            selector  = match[2],
+            self      = this
+
+        if (selector === '') {
+          this.$el.on(eventName, method)
+        } else {
+          this.$el.on(eventName, selector, method)
+        }
+      }
+
+      return this
+    },
+
+    checkStrength: function (e) {
+      var $el = $(e.target)
+
+      // ... need to actually write the complexity checking here ...
+
+      $el.trigger('pass-change', Math.floor((Math.random() * 100) + 1));
     }
 
   }
