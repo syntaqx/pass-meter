@@ -5,18 +5,54 @@
   </head>
   <body>
 
-    <input type="password" name="test-password">
+    <p>jQuery: <input type="password" name="jquery-test"></p>
+    <p>Node 1: <input type="password" name="node-test1"></p>
+    <p>Node 2: <input type="password" name="node-test2"></p>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="../src/pass-meter.js"></script>
 
     <script>
 
-      $(document).ready(function () {
-        $('input[type="password"]').passMeter().on('pass-change', function (e, complexity) {
-          console.log(complexity)
-        })
+    $(document).ready(function () {
+
+      // Testing Options
+      // ---------------
+      var options = {
+      }
+
+      // jQuery API
+      // ----------
+
+      $('input[name="jquery-test"]').passMeter({
+        afterTest: function (value) {
+          console.log('jQuery Result: ', value)
+        }
       })
+
+      // Node.js 1 API
+      // -----------
+
+      var meter1 = new PassMeter(options)
+
+      $('input[name="node-test1"]').on('keyup', function () {
+        console.log('Node 1 Result: ', meter1.test(this.value))
+      })
+
+      // Node.js 2 API
+      // -------------
+
+      var meter2 = new PassMeter({
+        afterTest: function (value) {
+          console.log('Node 2 Result: ', value)
+        }
+      })
+
+      $('input[name="node-test2"]').on('keyup', function () {
+        meter2.test(this.value)
+      })
+
+    })
 
     </script>
 

@@ -22,67 +22,36 @@
     root.PassMeter = factory(jQuery)
   }
 
-}(this, function ($) {
-
-  'use strict'
+}((typeof window !== 'undefined' ? window : this), function ($) {
 
   var defaultOptions = {
-    events: {
-      'keyup': 'checkStrength'
-    }
+    afterTest: null // callback function (if you want)
   }
 
-  function PassMeter (element, options) {
-    this.el      = element
-    this.$el     = $(element)
+  var PassMeter = function (options) {
     this.options = $.extend({}, defaultOptions, options)
-
     this.initialize()
   }
-
-  // Cached regex to split keys for `delegate`.
-  var delegateEventSplitter = /^(\S+)\s*(.*)$/;
 
   PassMeter.prototype = {
 
     constructor: PassMeter,
 
     initialize: function () {
-      this.delegateEvents()
     },
 
-    delegateEvents: function (events) {
-      if (!events) {
-        events = this.options.events
+    test: function (value) {
+      var score
+
+      // @TODO: Actually determine score from password complexity
+      score = (Math.floor(Math.random() * 100) + 1)
+
+      // Run an afterTest callback if defined
+      if (typeof this.options.afterTest === 'function') {
+        this.options.afterTest(score)
       }
 
-      for (var key in events) {
-        var method = events[key]
-
-        if (!$.isFunction(method)) method = this[events[key]]
-        if (!method) continue
-
-        var match     = key.match(delegateEventSplitter),
-            eventName = match[1],
-            selector  = match[2],
-            self      = this
-
-        if (selector === '') {
-          this.$el.on(eventName, method)
-        } else {
-          this.$el.on(eventName, selector, method)
-        }
-      }
-
-      return this
-    },
-
-    checkStrength: function (e) {
-      var $el = $(e.target)
-
-      // ... need to actually write the complexity checking here ...
-
-      $el.trigger('pass-change', Math.floor((Math.random() * 100) + 1));
+      return score
     }
 
   }
@@ -90,13 +59,22 @@
   // A really lightweight jQuery plugin wrapper around the constructor,
   // preventing against multiple instantiations.
   $.fn.passMeter = function (options) {
+
     return this.each(function () {
-      if (!$.data(this, 'pass-meter')) {
-        $.data(this, 'pass-meter', new PassMeter(this, options))
+      var $el = $(this)
+
+      if (!$el.data('pass-meter')) {
+        var obj = new PassMeter(options)
+
+        $el.data('pass-meter', obj)
+        $el.on('keyup', function () {
+          obj.test(this.value)
+        })
       }
     })
   }
 
+  // Export to UMD
   return PassMeter
 
 }))
