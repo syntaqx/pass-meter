@@ -4,6 +4,10 @@
 
 Simple password strength testing.
 
+## Requirements
+
+* jQuery 1.7 or higher
+
 ## Usage
 
 When used as either a jQuery plugin or Module, Pass-Meter only expects a single
