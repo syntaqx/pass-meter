@@ -55,7 +55,7 @@ var meter = new PassMeter({
   }
 })
 
-meter.test(pass)
+meter.test('apasswordtotest')
 ```
 
 ## Options
