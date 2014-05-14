@@ -2,31 +2,59 @@
 <html>
   <head>
     <title>Pass-Meter Tests</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   </head>
   <body>
 
-    <h1>Pass-Meter Tests</h1>
+    <nav class="navbar navbar-default" role="navigation">
+    </nav>
 
-    <h2>jQuery</h2>
+    <div class="container" role="main">
 
-    <p><input type="password" name="jquery-test-1"></p>
-    <p class="jquery-result-1">Score: 0</p>
+      <div class="jumbotron">
+        <h1>Pass Meter Tests</h1>
+        <p>Functional tests for jQuery and OOP Usage</p>
+      </div>
 
-    <p><input type="password" name="jquery-test-2"></p>
-    <p class="jquery-result-2">Score: 0</p>
+      <div class="page-header">
+        <h2>jQuery Usage</h2>
+      </div>
 
-    <h2>OOP</h2>
+      <p><input class="form-control" type="password" name="jquery-test-1" placeholder="Password"></p>
+      <div class="progress jquery-result-1">
+        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+      </div>
 
-    <p><input type="password" name="oop-test-1"></p>
-    <p class="oop-result-1">Score: 0</p>
+      <p><input class="form-control" type="password" name="jquery-test-2" placeholder="Password"></p>
+      <div class="progress jquery-result-2">
+        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+      </div>
 
-    <p><input type="password" name="oop-test-2"></p>
-    <p class="oop-result-2">Score: 0</p>
+      <div class="page-header">
+        <h2>OOP Usage</h2>
+      </div>
 
-    <p><input type="password" name="oop-test-3"></p>
-    <p class="oop-result-3">Score: 0</p>
+      <p><input class="form-control" type="password" name="oop-test-1" placeholder="Password"></p>
+      <div class="progress oop-result-1">
+        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+      </div>
+
+      <p><input class="form-control" type="password" name="oop-test-2" placeholder="Password"></p>
+      <div class="progress oop-result-2">
+        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+      </div>
+
+      <p><input class="form-control" type="password" name="oop-test-3" placeholder="Password"></p>
+      <div class="progress oop-result-3">
+        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+      </div>
+
+    </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="../src/pass-meter.js"></script>
 
     <script>
@@ -36,13 +64,13 @@
       // jQuery Usage Tests
       // ------------------
 
-      var jqueryResult1 = $('.jquery-result-1')
-      var jqueryResult2 = $('.jquery-result-2')
+      var jqueryResult1 = $('.jquery-result-1 .progress-bar')
+      var jqueryResult2 = $('.jquery-result-2 .progress-bar')
 
       // Implementation 1
 
       $('input[name="jquery-test-1"]').passMeter(function (score) {
-        jqueryResult1.html('Score: ' + score)
+        jqueryResult1.width(score + '%')
       })
 
       // Implementation 2
@@ -50,29 +78,29 @@
       $('input[name="jquery-test-2"]').passMeter({
         events: 'keyup keydown change',
         afterTest: function (score) {
-          jqueryResult2.html('Score: ' + score)
+          jqueryResult2.width(score + '%')
         }
       })
 
       // OOP Usage Tests
       // ---------------
 
-      var oopResult1 = $('.oop-result-1')
-      var oopResult2 = $('.oop-result-2')
-      var oopResult3 = $('.oop-result-3')
+      var oopResult1 = $('.oop-result-1 .progress-bar')
+      var oopResult2 = $('.oop-result-2 .progress-bar')
+      var oopResult3 = $('.oop-result-3 .progress-bar')
 
       // Implementation 1
 
       var oopMeter1 = new PassMeter()
 
       $('input[name="oop-test-1"]').on('keyup', function () {
-        oopResult1.html('Score: ' + oopMeter1.test(this.value))
+        oopResult1.width(score + '%')
       })
 
       // Implementation 2
 
       var oopMeter2 = new PassMeter(function (score) {
-        oopResult2.html('Score: ' + score)
+        oopResult2.width(score + '%')
       })
 
       $('input[name="oop-test-2"]').on('keyup', function () {
@@ -83,7 +111,7 @@
 
       var oopMeter3 = new PassMeter({
         afterTest: function (score) {
-          oopResult3.html('Score: ' + score)
+          oopResult3.width(score + '%').html(score + '%')
         }
       })
 
