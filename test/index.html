@@ -5,9 +5,26 @@
   </head>
   <body>
 
-    <p>jQuery: <input type="password" name="jquery-test"></p>
-    <p>Node 1: <input type="password" name="node-test1"></p>
-    <p>Node 2: <input type="password" name="node-test2"></p>
+    <h1>Pass-Meter Tests</h1>
+
+    <h2>jQuery</h2>
+
+    <p><input type="password" name="jquery-test-1"></p>
+    <p class="jquery-result-1">Score: 0</p>
+
+    <p><input type="password" name="jquery-test-2"></p>
+    <p class="jquery-result-2">Score: 0</p>
+
+    <h2>OOP</h2>
+
+    <p><input type="password" name="oop-test-1"></p>
+    <p class="oop-result-1">Score: 0</p>
+
+    <p><input type="password" name="oop-test-2"></p>
+    <p class="oop-result-2">Score: 0</p>
+
+    <p><input type="password" name="oop-test-3"></p>
+    <p class="oop-result-3">Score: 0</p>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="../src/pass-meter.js"></script>
@@ -16,40 +33,62 @@
 
     $(document).ready(function () {
 
-      // Testing Options
+      // jQuery Usage Tests
+      // ------------------
+
+      var jqueryResult1 = $('.jquery-result-1')
+      var jqueryResult2 = $('.jquery-result-2')
+
+      // Implementation 1
+
+      $('input[name="jquery-test-1"]').passMeter(function (score) {
+        jqueryResult1.html('Score: ' + score)
+      })
+
+      // Implementation 2
+
+      $('input[name="jquery-test-2"]').passMeter({
+        events: 'keyup keydown change',
+        afterTest: function (score) {
+          jqueryResult2.html('Score: ' + score)
+        }
+      })
+
+      // OOP Usage Tests
       // ---------------
-      var options = {
-      }
 
-      // jQuery API
-      // ----------
+      var oopResult1 = $('.oop-result-1')
+      var oopResult2 = $('.oop-result-2')
+      var oopResult3 = $('.oop-result-3')
 
-      $('input[name="jquery-test"]').passMeter({
-        afterTest: function (value) {
-          console.log('jQuery Result: ', value)
+      // Implementation 1
+
+      var oopMeter1 = new PassMeter()
+
+      $('input[name="oop-test-1"]').on('keyup', function () {
+        oopResult1.html('Score: ' + oopMeter1.test(this.value))
+      })
+
+      // Implementation 2
+
+      var oopMeter2 = new PassMeter(function (score) {
+        oopResult2.html('Score: ' + score)
+      })
+
+      $('input[name="oop-test-2"]').on('keyup', function () {
+        oopMeter2.test(this.value)
+      })
+
+      // Implementation 3
+
+      var oopMeter3 = new PassMeter({
+        afterTest: function (score) {
+          oopResult3.html('Score: ' + score)
         }
       })
 
-      // Node.js 1 API
-      // -----------
-
-      var meter1 = new PassMeter(options)
-
-      $('input[name="node-test1"]').on('keyup', function () {
-        console.log('Node 1 Result: ', meter1.test(this.value))
-      })
-
-      // Node.js 2 API
-      // -------------
-
-      var meter2 = new PassMeter({
-        afterTest: function (value) {
-          console.log('Node 2 Result: ', value)
-        }
-      })
-
-      $('input[name="node-test2"]').on('keyup', function () {
-        meter2.test(this.value)
+      $('input[name="oop-test-3"]').on('keyup', function () {
+        oopMeter3.test(this.value)
       })
 
     })
