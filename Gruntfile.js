@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     // grunt-contrib-jshint
-    // ...
+    // Validate files with JSHint.
     jshint: {
       options: {
         jshintrc: '.jshintrc'
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
     },
 
     // grunt-contrib-uglify
-    // ...
+    // Minify files with UglifyJS.
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> v<%= pkg.version %> | Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %> | Released under the <%= pkg.license %> license %> */\n'
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
     },
 
     // grunt-contrib-watch
-    // ...
+    // Run predefined tasks whenever watched file patterns are added, changed or deleted.
     watch: {
       files: ['<%= jshint.files %>'],
       tasks: ['jshint']
