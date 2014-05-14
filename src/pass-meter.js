@@ -78,7 +78,7 @@
         score = (total / 4) * 100
 
       // Give them a little bit of feedback if they're at least typed something
-      } else if (value > 0) {
+      } else if (value.length > 0) {
         score = 2
       }
 
