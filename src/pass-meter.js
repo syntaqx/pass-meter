@@ -24,12 +24,11 @@
 
 }((typeof window !== 'undefined' ? window : this), function ($) {
 
+  'use strict';
+
   var defaultOptions = {
     events:    'keyup',
-    afterTest: null,
-    lang: {
-      common: 'Your password is very commonly used. It would be cracked almost instantly.'
-    }
+    afterTest: null
   }
 
   var PassMeter = function (options) {
@@ -103,7 +102,7 @@
 
       // Run an afterTest callback if defined
       if (typeof this.options.afterTest === 'function') {
-        this.options.afterTest(total)
+        this.options.afterTest(total, value)
       }
 
       return total

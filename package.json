@@ -1,0 +1,33 @@
+{
+  "name": "pass-meter",
+  "version": "0.0.1-pre",
+  "description": "Simple password strength testing.",
+  "main": "src/pass-meter.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/syntaqx/pass-meter.git"
+  },
+  "keywords": [
+    "password",
+    "strength",
+    "meter"
+  ],
+  "author": "Chase Hutchins <syntaqx@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/syntaqx/pass-meter/issues"
+  },
+  "homepage": "https://github.com/syntaqx/pass-meter",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-jshint": "~0.10.0"
+  }
+}
