@@ -32,12 +32,12 @@
         i = 1,
         length = arguments.length
 
-      if ( typeof target !== "object" && !(typeof target === 'function')) {
+      if ( typeof target !== "object" && (typeof target !== 'function')) {
         target = {}
       }
 
       for ( ; i < length; i++ ) {
-        if ( (options = arguments[ i ]) != null ) {
+        if ( (options = arguments[ i ]) !== null ) {
           for ( name in options ) {
             src = target[ name ];
             copy = options[ name ];

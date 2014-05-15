@@ -9,19 +9,19 @@
 
   // AMD. Register as a named module.
   if (typeof define === 'function' && define.amd) {
-    define('pass-meter', ['jquery'], factory)
+    define('pass-meter', factory)
 
   // Node. Does not work with strict CommonJS, but only CommonJS-like
   // environments that supports module.exports like Node.
   } else if (typeof module === 'object' && module.exports) {
-    module.exports = factory(require('jquery'))
+    module.exports = factory()
 
   // Browser globals (root is window)
   } else {
-    root.PassMeter = factory(jQuery)
+    root.PassMeter = factory()
   }
 
-}((typeof window !== 'undefined' ? window : this), function ($) {
+}((typeof window !== 'undefined' ? window : this), function () {
 
   'use strict';
 
@@ -30,15 +30,52 @@
     afterTest: null
   }
 
+  var extend
+
+  if (typeof jQuery !== 'function') {
+    extend = function() {
+      var options, name, src, copy, copyIsArray, clone,
+        target = arguments[0] || {},
+        i = 1,
+        length = arguments.length
+
+      if ( typeof target !== "object" && (typeof target !== 'function')) {
+        target = {}
+      }
+
+      for ( ; i < length; i++ ) {
+        if ( (options = arguments[ i ]) !== null ) {
+          for ( name in options ) {
+            src = target[ name ];
+            copy = options[ name ];
+
+            if ( target === copy ) {
+              continue;
+            }
+
+            if ( copy !== undefined ) {
+              target[ name ] = copy;
+            }
+          }
+        }
+      }
+
+      return target;
+    }
+  } else {
+    extend = jQuery.extend
+  }
+
   var PassMeter = function (options) {
-    // allows the afterTest to be specified as the options object
-    if (typeof options === 'function') {
+    if (typeof options === 'undefined') {
+      options = {}
+    } else if (typeof options === 'function') {
       options = {
         afterTest: options
       }
     }
 
-    this.options = $.extend({}, defaultOptions, options)
+    this.options = extend({}, defaultOptions, options)
   }
 
   PassMeter.prototype = {
@@ -99,6 +136,7 @@
       if (total < 0)   total = 0
       if (total > 100) total = 100
 
+        console.log(this.options)
       // Run an afterTest callback if defined
       if (typeof this.options.afterTest === 'function') {
         this.options.afterTest(total, value)
@@ -111,22 +149,23 @@
 
   // A really lightweight jQuery plugin wrapper around the constructor,
   // preventing against multiple instantiations.
-  $.fn.passMeter = function (options) {
+  if (typeof jQuery === 'function' && jQuery.fn) {
+    jQuery.fn.passMeter = function (options) {
+      return this.each(function () {
+        var $el = jQuery(this)
 
-    return this.each(function () {
-      var $el = $(this)
+        if (!$el.data('pass-meter')) {
+          var obj = new PassMeter(options)
 
-      if (!$el.data('pass-meter')) {
-        var obj = new PassMeter(options)
+          // Bind to the events specified in the options
+          $el.on(obj.options.events, function () {
+            obj.test(this.value)
+          })
 
-        // Bind to the events specified in the options
-        $el.on(obj.options.events, function () {
-          obj.test(this.value)
-        })
-
-        $el.data('pass-meter', obj)
-      }
-    })
+          $el.data('pass-meter', obj)
+        }
+      })
+    }
   }
 
   // Export to UMD
