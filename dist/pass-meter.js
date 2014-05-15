@@ -1,3 +1,10 @@
+/*!
+ * pass-meter v0.0.1-pre
+ * https://github.com/syntaqx/pass-meter
+ *
+ * Copyright (c) 2014 Chase Hutchins <syntaqx@gmail.com>
+ * Released under the MIT license
+ */
 (function (root, factory) {
 
   // AMD. Register as a named module.

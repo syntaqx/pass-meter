@@ -20,15 +20,43 @@ module.exports = function(grunt) {
       ]
     },
 
+    // grunt-contrib-concat
+    // Concatenate files.
+    concat: {
+      options: {
+        banner: [
+          '/*!',
+          ' * <%= pkg.name %> v<%= pkg.version %>',
+          ' * <%= pkg.homepage %>',
+          ' *',
+          ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>',
+          ' * Released under the <%= pkg.license %> license',
+          ' */\n',
+        ].join('\n')
+      },
+      dist: {
+        src: ['src/<%= pkg.name %>.js'],
+        dest: 'dist/<%= pkg.name %>.js'
+      }
+    },
+
     // grunt-contrib-uglify
     // Minify files with UglifyJS.
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> v<%= pkg.version %> | Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %> | Released under the <%= pkg.license %> license %> */\n'
+        banner: [
+          '/*!',
+          ' * <%= pkg.name %> v<%= pkg.version %>',
+          ' * <%= pkg.homepage %>',
+          ' *',
+          ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>',
+          ' * Released under the <%= pkg.license %> license',
+          ' */\n',
+        ].join('\n')
       },
       dist: {
         files: {
-          'dist/<%= pkg.name %>.min.js': ['src/<%= pkg.name %>.js']
+          'dist/<%= pkg.name %>.min.js': ['dist/<%= pkg.name %>.js']
         }
       }
     },
@@ -45,8 +73,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint')
   grunt.loadNpmTasks('grunt-contrib-uglify')
   grunt.loadNpmTasks('grunt-contrib-watch')
+  grunt.loadNpmTasks('grunt-contrib-concat')
 
   grunt.registerTask('test', ['jshint'])
-  grunt.registerTask('default', ['test', 'uglify'])
+  grunt.registerTask('default', ['test', 'concat', 'uglify'])
 
 }
