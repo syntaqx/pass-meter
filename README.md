@@ -4,9 +4,9 @@
 
 Simple password strength testing.
 
-## Requirements
+## Optional Dependencies
 
-* jQuery 1.7 or higher
+* jQuery 1.7 or higher *(needed for plugin usage)*
 
 ## Usage
 
