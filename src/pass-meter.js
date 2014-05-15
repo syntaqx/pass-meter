@@ -33,29 +33,30 @@
 
   var extend
 
-  if (typeof jQuery !== 'function') {
+  if (typeof jQuery === 'function') {
+    // A simpler version of jQuery's extend function to combine objets.
     extend = function() {
-      var options, name, src, copy, copyIsArray, clone,
-        target = arguments[0] || {},
-        i = 1,
-        length = arguments.length
+      var target = arguments[0] || {},
+          i      = 1,
+          length = arguments.length,
+          options,
+          name,
+          copy,
+          src,
+          clone
 
-      if ( typeof target !== "object" && (typeof target !== 'function')) {
-        target = {}
-      }
+      for (; i < length; i++) {
+        if ((options = arguments[i]) !== null) {
+          for (name in options) {
+            src  = target[name];
+            copy = options[name]
 
-      for ( ; i < length; i++ ) {
-        if ( (options = arguments[ i ]) !== null ) {
-          for ( name in options ) {
-            src = target[ name ];
-            copy = options[ name ];
-
-            if ( target === copy ) {
-              continue;
+            if (target === copy) {
+              continue
             }
 
-            if ( copy !== undefined ) {
-              target[ name ] = copy;
+            if (copy !== undefined) {
+              target[name] = copy
             }
           }
         }
@@ -131,7 +132,6 @@
       if (total < 0)   total = 0
       if (total > 100) total = 100
 
-        console.log(this.options)
       // Run an afterTest callback if defined
       if (typeof this.options.afterTest === 'function') {
         this.options.afterTest(total, value)
