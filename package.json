@@ -1,6 +1,6 @@
 {
   "name": "pass-meter",
-  "version": "0.0.1-pre",
+  "version": "1.0.0",
   "description": "Simple password strength testing.",
   "main": "src/pass-meter.js",
   "directories": {
