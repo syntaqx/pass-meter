@@ -83,6 +83,11 @@ meter.test('apasswordtotest')
       <td>null</td>
       <td>A callback for when a test has been completed.</td>
     </tr>
+    <tr>
+      <td><code>commonPasswords</code></td>
+      <td><code>['password', '123456', '12345678', '1234', 'qwerty']</code></td>
+      <td>An array of common passwords to instantly fail.</td>
+    </tr>
   </tbody>
 </table>
 
