@@ -1,5 +1,5 @@
 /*!
- * pass-meter v0.0.1-pre
+ * pass-meter v1.0.0
  * https://github.com/syntaqx/pass-meter
  *
  * Copyright (c) 2014 Chase Hutchins <syntaqx@gmail.com>
@@ -59,10 +59,10 @@
           return value.length >= 8
         }
       },
-      { score: 20, regex: new RegExp('[A-Z]') },                     // uppercase
-      { score: 10, regex: new RegExp('[a-z]') },                     // lowercase
-      { score: 10, regex: new RegExp('[0-9]') },                     // numbers
-      { score: 25, regex: new RegExp('([!,%,&,@,#,$,^,*,?,_,~])') }, // symbols
+      { score: 20, regex: new RegExp('[A-Z]') }, // uppercase
+      { score: 10, regex: new RegExp('[a-z]') }, // lowercase
+      { score: 10, regex: new RegExp('[0-9]') }, // numbers
+      { score: 25, regex: new RegExp('\\W') },   // symbols
       {
         score: -100,
         callback: function (value) {
