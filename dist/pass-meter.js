@@ -40,7 +40,7 @@
 
   var extend
 
-  if (typeof jQuery === 'function') {
+  if (typeof jQuery !== 'function') {
     // A simpler version of jQuery's extend function to combine objets.
     extend = function() {
       var target = arguments[0] || {},

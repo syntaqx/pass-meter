@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pass-Meter Tests</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default" role="navigation">
+    </nav>
+
+    <div class="container" role="main">
+
+      <div class="jumbotron">
+        <h1>Pass Meter Tests</h1>
+        <p>Example using jQuery</p>
+      </div>
+
+      <p><input class="form-control" type="password" name="jquery-test-1" placeholder="Password"></p>
+      <div class="progress jquery-result-1">
+        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+      </div>
+
+      <p><input class="form-control" type="password" name="jquery-test-2" placeholder="Password"></p>
+      <div class="progress jquery-result-2">
+        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+      </div>
+
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="../src/pass-meter.js"></script>
+
+    <script>
+
+    $(document).ready(function () {
+
+      var jqueryResult1 = $('.jquery-result-1 .progress-bar')
+      var jqueryResult2 = $('.jquery-result-2 .progress-bar')
+
+      // Implementation 1
+
+      $('input[name="jquery-test-1"]').passMeter(function (score) {
+        jqueryResult1.width(score + '%')
+      })
+
+      // Implementation 2
+
+      $('input[name="jquery-test-2"]').passMeter({
+        events: 'keyup keydown change',
+        afterTest: function (score) {
+          jqueryResult2.width(score + '%')
+        }
+      })
+
+    })
+
+    </script>
+
+  </body>
+</html>

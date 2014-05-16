@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/syntaqx/pass-meter",
   "devDependencies": {
+    "mocha": "~1.18.2",
     "grunt": "~0.4.5",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-contrib-uglify": "~0.4.0",
