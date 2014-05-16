@@ -1,4 +1,4 @@
-# [Pass-Meter.js](https://github.com/syntaqx/pass-meter) v1.0
+# [Pass-Meter.js](https://github.com/syntaqx/pass-meter) v1.0.0
 
 [![Build Status](https://travis-ci.org/syntaqx/pass-meter.png?branch=master)](https://travis-ci.org/syntaqx/pass-meter "Travis Build Status")
 
