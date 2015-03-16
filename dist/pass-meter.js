@@ -2,7 +2,7 @@
  * pass-meter v1.0.0
  * https://github.com/syntaqx/pass-meter
  *
- * Copyright (c) 2014 Chase Hutchins <syntaqx@gmail.com>
+ * Copyright (c) 2015 Chase Hutchins <syntaqx@gmail.com>
  * Released under the MIT license
  */
 (function (root, factory) {
@@ -112,7 +112,7 @@
 
           return false
         }
-      },
+      }
     ],
 
     // Test the strength of a given value
