@@ -105,7 +105,7 @@
 
           return false
         }
-      },
+      }
     ],
 
     // Test the strength of a given value
