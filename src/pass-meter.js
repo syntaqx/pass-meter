@@ -166,4 +166,4 @@
   // Export to UMD
   return PassMeter
 
-}))
+}));
