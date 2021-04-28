@@ -10,7 +10,10 @@
   "scripts": {
     "build": "grunt build",
     "pretest": "grunt lint",
-    "test": "mocha"
+    "test": "mocha",
+    "preversion": "npm test",
+    "version": "npm run build && git add -A dist",
+    "postversion": "git push && git push --tags && rm -rf build/temp"
   },
   "devDependencies": {
     "grunt": "^1.4.0",
