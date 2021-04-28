@@ -1,27 +1,15 @@
-module.exports = function(grunt) {
+'use strict';
 
-  'use strict';
+module.exports = function (grunt) {
 
   grunt.initConfig({
-
-    // Package meta
     pkg: grunt.file.readJSON('package.json'),
-
-    // grunt-contrib-jshint
-    // Validate files with JSHint.
     jshint: {
+      files: ['Gruntfile.js', 'src/**/*.js', 'test/**.*.js'],
       options: {
         jshintrc: '.jshintrc'
-      },
-      files: [
-        'Gruntfile.js',
-        'src/**/*.js',
-        'test/**/*.js'
-      ]
+      }
     },
-
-    // grunt-contrib-concat
-    // Concatenate files.
     concat: {
       options: {
         banner: [
@@ -39,9 +27,6 @@ module.exports = function(grunt) {
         dest: 'dist/<%= pkg.name %>.js'
       }
     },
-
-    // grunt-contrib-uglify
-    // Minify files with UglifyJS.
     uglify: {
       options: {
         banner: [
@@ -60,22 +45,19 @@ module.exports = function(grunt) {
         }
       }
     },
-
-    // grunt-contrib-watch
-    // Run predefined tasks whenever watched file patterns are added, changed or deleted.
     watch: {
       files: ['<%= jshint.files %>'],
       tasks: ['jshint']
     }
+  });
 
-  })
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
-  grunt.loadNpmTasks('grunt-contrib-jshint')
-  grunt.loadNpmTasks('grunt-contrib-uglify')
-  grunt.loadNpmTasks('grunt-contrib-watch')
-  grunt.loadNpmTasks('grunt-contrib-concat')
+  grunt.registerTask('build', ['concat', 'uglify']);
+  grunt.registerTask('lint', ['jshint']);
 
-  grunt.registerTask('test', ['jshint'])
-  grunt.registerTask('default', ['test', 'concat', 'uglify'])
-
-}
+  grunt.registerTask('default', ['test', 'lint']);
+};
