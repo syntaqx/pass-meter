@@ -1,6 +1,6 @@
 # [Pass-Meter.js](https://github.com/syntaqx/pass-meter) v1.0.1
 
-[![Build Status](https://travis-ci.org/syntaqx/pass-meter.png?branch=master)](https://travis-ci.org/syntaqx/pass-meter "Travis Build Status")
+[![Build Status](https://travis-ci.com/syntaqx/pass-meter.svg?branch=master)](https://travis-ci.com/syntaqx/pass-meter)
 [![microjs](https://img.shields.io/badge/microjs-0.7kb-blueviolet)](http://microjs.com/#pass-meter)
 
 Simple password strength testing.
