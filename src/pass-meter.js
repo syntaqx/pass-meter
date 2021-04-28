@@ -1,30 +1,30 @@
 (function (root, factory) {
   // AMD. Register as a named module.
-  if (typeof define === "function" && define.amd) {
-    define("pass-meter", factory);
-
-    // Node. Does not work with strict CommonJS, but only CommonJS-like
-    // environments that supports module.exports like Node.
-  } else if (typeof module === "object" && module.exports) {
+  if (typeof define === 'function' && define.amd) {
+    define('pass-meter', factory);
+  }
+  // Node. Does not work with strict CommonJS, but only CommonJS-like
+  // environments that supports module.exports like Node.
+  else if (typeof module === 'object' && module.exports) {
     module.exports = factory();
-
-    // Browser globals (root is window)
-  } else {
+  }
+  // Browser globals (root is window)
+  else {
     root.PassMeter = factory();
   }
-})(typeof window !== "undefined" ? window : this, function () {
-  "use strict";
+})(typeof window !== 'undefined' ? window : this, function () {
+  'use strict';
 
   var defaultOptions = {
-    events: "keyup",
+    events: 'keyup',
     afterTest: null,
     // http://xato.net/passwords/more-top-worst-passwords
-    commonPasswords: ["password", "123456", "12345678", "1234", "qwerty"],
+    commonPasswords: ['password', '123456', '12345678', '1234', 'qwerty'],
   };
 
   var extend;
 
-  if (typeof jQuery !== "function") {
+  if (typeof jQuery !== 'function') {
     // A simpler version of jQuery's extend function to combine objets.
     extend = function () {
       var target = arguments[0] || {},
@@ -60,9 +60,9 @@
   }
 
   var PassMeter = function (options) {
-    if (typeof options === "undefined") {
+    if (typeof options === 'undefined') {
       options = {};
-    } else if (typeof options === "function") {
+    } else if (typeof options === 'function') {
       options = {
         afterTest: options,
       };
@@ -82,10 +82,10 @@
           return value.length >= 8;
         },
       },
-      { score: 20, regex: new RegExp("[A-Z]") }, // uppercase
-      { score: 10, regex: new RegExp("[a-z]") }, // lowercase
-      { score: 10, regex: new RegExp("[0-9]") }, // numbers
-      { score: 25, regex: new RegExp("\\W") }, // symbols
+      { score: 20, regex: new RegExp('[A-Z]') }, // uppercase
+      { score: 10, regex: new RegExp('[a-z]') }, // lowercase
+      { score: 10, regex: new RegExp('[0-9]') }, // numbers
+      { score: 25, regex: new RegExp('\\W') }, // symbols
       {
         score: -100,
         callback: function (value) {
@@ -111,11 +111,11 @@
 
       // Iterate each check and return the sum of all scores
       this.checks.forEach(function (check) {
-        if (check.hasOwnProperty("regex")) {
+        if (check.hasOwnProperty('regex')) {
           if (value.match(check.regex)) {
             total += check.score;
           }
-        } else if (check.hasOwnProperty("callback")) {
+        } else if (check.hasOwnProperty('callback')) {
           if (check.callback.call(self, value)) {
             total += check.score;
           }
@@ -127,7 +127,7 @@
       if (total > 100) total = 100;
 
       // Run an afterTest callback if defined
-      if (typeof this.options.afterTest === "function") {
+      if (typeof this.options.afterTest === 'function') {
         this.options.afterTest(total, value);
       }
 
@@ -137,12 +137,12 @@
 
   // A really lightweight jQuery plugin wrapper around the constructor,
   // preventing against multiple instantiations.
-  if (typeof jQuery === "function" && jQuery.fn) {
+  if (typeof jQuery === 'function' && jQuery.fn) {
     jQuery.fn.passMeter = function (options) {
       return this.each(function () {
         var $el = jQuery(this);
 
-        if (!$el.data("pass-meter")) {
+        if (!$el.data('pass-meter')) {
           var obj = new PassMeter(options);
 
           // Bind to the events specified in the options
@@ -150,7 +150,7 @@
             obj.test(this.value);
           });
 
-          $el.data("pass-meter", obj);
+          $el.data('pass-meter', obj);
         }
       });
     };

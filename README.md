@@ -1,4 +1,4 @@
-# [Pass-Meter.js](https://github.com/syntaqx/pass-meter)
+# pass-meter
 
 [![Build Status](https://travis-ci.com/syntaqx/pass-meter.svg)](https://travis-ci.com/syntaqx/pass-meter)
 [![microjs](https://img.shields.io/badge/microjs-0.7kb-blueviolet)](http://microjs.com/#pass-meter)
@@ -8,7 +8,13 @@ Simple password strength testing.
 
 ## Optional Dependencies
 
-* [jQuery](https://jquery.com/) 1.7 or higher *(needed for plugin usage)*
+- [jQuery](https://jquery.com/) 1.7 or higher _(needed for plugin usage)_
+
+## Install
+
+```sh
+npm install @syntaqx/pass-meter
+```
 
 ## Usage
 
@@ -24,8 +30,8 @@ styling in the callback:
 
 ```js
 $('input[type="password"]').passMeter(function (score) {
-  alert('Your password is ' + score + '% strong.')
-})
+  alert('Your password is ' + score + '% strong.');
+});
 ```
 
 Or, with additional options:
@@ -34,34 +40,34 @@ Or, with additional options:
 $('input[type="password"]').passMeter({
   event: 'change',
   afterTest: function (score) {
-    alert('Your password is ' + score + '% strong.')
-  }
-})
+    alert('Your password is ' + score + '% strong.');
+  },
+});
 ```
 
 ### Module
 
 ```js
-var PassMeter = require('pass-meter')
+var PassMeter = require('pass-meter');
 
-var meter = new PassMeter()
-var pass  = 'apasswordtotest'
+var meter = new PassMeter();
+var pass = 'apasswordtotest';
 
-console.log('The password "' + pass + '" is ' + meter.test(pass) + '% strong')
+console.log('The password "' + pass + '" is ' + meter.test(pass) + '% strong');
 ```
 
 Or, with additional options:
 
 ```js
-var PassMeter = require('pass-meter')
+var PassMeter = require('pass-meter');
 
 var meter = new PassMeter({
   afterTest: function (score, value) {
-    console.log('The password ' + value + ' is ' + score + '% strong')
-  }
-})
+    console.log('The password ' + value + ' is ' + score + '% strong');
+  },
+});
 
-meter.test('apasswordtotest')
+meter.test('apasswordtotest');
 ```
 
 ## Options
