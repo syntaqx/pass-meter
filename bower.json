@@ -1,18 +1,24 @@
 {
   "name": "pass-meter",
-  "version": "1.0.1",
+  "description": "Simple password strength testing.",
   "main": "dist/pass-meter.js",
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "example",
-    "*.md",
-    "Gruntfile.js",
-    "package.json"
+  "authors": [
+    "Chase Pierce <syntaqx@gmail.com>"
   ],
+  "license": "MIT",
   "keywords": [
     "password",
     "strength",
-    "testing"
+    "meter",
+    "micro",
+    "microjs"
+  ],
+  "homepage": "https://github.com/syntaqx/pass-meter",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
   ]
 }
