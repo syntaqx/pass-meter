@@ -2,7 +2,7 @@
   "_name": "pass-meter",
   "name": "@syntaqx/pass-meter",
   "description": "Simple password strength testing.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Chase Pierce <syntaqx@gmail.com>",
   "repository": "syntaqx/pass-meter",
   "homepage": "https://github.com/syntaqx/pass-meter",
