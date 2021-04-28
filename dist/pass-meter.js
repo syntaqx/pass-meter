@@ -2,7 +2,7 @@
  * pass-meter v1.0.1
  * https://github.com/syntaqx/pass-meter
  *
- * Copyright (c) 2015 Chase Hutchins <syntaqx@gmail.com>
+ * Copyright (c) 2015 Chase Pierce <syntaqx@gmail.com>
  * Released under the MIT license
  */
 (function (root, factory) {
