@@ -1,5 +1,5 @@
 {
-  "name": "pass-meter",
+  "name": "@syntaqx/pass-meter",
   "description": "Simple password strength testing.",
   "version": "1.0.2",
   "author": "Chase Pierce <syntaqx@gmail.com>",
