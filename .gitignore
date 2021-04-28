@@ -1,10 +1,5 @@
-# gitignore - Specifies intentionally untracked files to ignore
-# http://git-scm.com/docs/gitignore
-
-/node_modules
-/npm-debug.log
-
-# Common OS Files
+._*
 .DS_Store
 .DS_Store?
-._*
+/node_modules
+/npm-debug.log
