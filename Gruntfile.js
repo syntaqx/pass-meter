@@ -6,48 +6,48 @@ module.exports = function (grunt) {
     jshint: {
       files: ['Gruntfile.js', 'src/**/*.js', 'test/**.*.js'],
       options: {
-        jshintrc: '.jshintrc'
-      }
+        jshintrc: '.jshintrc',
+      },
     },
     concat: {
       options: {
         banner: [
           '/*!',
-          ' * <%= pkg.name %> v<%= pkg.version %>',
+          ' * <%= pkg._name %> v<%= pkg.version %>',
           ' * <%= pkg.homepage %>',
           ' *',
           ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>',
           ' * Released under the <%= pkg.license %> license',
           ' */\n',
-        ].join('\n')
+        ].join('\n'),
       },
       dist: {
-        src: ['src/<%= pkg.name %>.js'],
-        dest: 'dist/<%= pkg.name %>.js'
-      }
+        src: ['src/<%= pkg.main %>.js'],
+        dest: 'dist/<%= pkg._name %>.js',
+      },
     },
     uglify: {
       options: {
         banner: [
           '/*!',
-          ' * <%= pkg.name %> v<%= pkg.version %>',
+          ' * <%= pkg._name %> v<%= pkg.version %>',
           ' * <%= pkg.homepage %>',
           ' *',
           ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>',
           ' * Released under the <%= pkg.license %> license',
           ' */\n',
-        ].join('\n')
+        ].join('\n'),
       },
       dist: {
         files: {
-          'dist/<%= pkg.name %>.min.js': ['dist/<%= pkg.name %>.js']
-        }
-      }
+          'dist/<%= pkg._name %>.min.js': ['dist/<%= pkg._name %>.js'],
+        },
+      },
     },
     watch: {
       files: ['<%= jshint.files %>'],
-      tasks: ['jshint']
-    }
+      tasks: ['jshint'],
+    },
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
