@@ -1,6 +1,7 @@
 # [Pass-Meter.js](https://github.com/syntaqx/pass-meter) v1.0.1
 
 [![Build Status](https://travis-ci.org/syntaqx/pass-meter.png?branch=master)](https://travis-ci.org/syntaqx/pass-meter "Travis Build Status")
+[![microjs](https://img.shields.io/badge/microjs-0.7kb-blueviolet)](http://microjs.com/#pass-meter)
 
 Simple password strength testing.
 
@@ -15,7 +16,7 @@ argument. If the argument is a function, it is treated as the `afterTest`
 callback option. If you need to specify additional options, you will need to
 provide a standard options object.
 
-### ..:: jQuery
+### jQuery
 
 Simple call the `$.passMeter` plugin on any elements you'd like. Create your own
 styling in the callback:
@@ -37,7 +38,7 @@ $('input[type="password"]').passMeter({
 })
 ```
 
-### ..:: Module
+### Module
 
 ```js
 var PassMeter = require('pass-meter')
@@ -93,5 +94,4 @@ meter.test('apasswordtotest')
 
 ## License
 
-Pass-Meter is open source software licensed under the
-[MIT license](https://raw.githubusercontent.com/syntaqx/pass-meter/master/LICENSE).
+This project is open source available under the [MIT license](./LICENSE).
